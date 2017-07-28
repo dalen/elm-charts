@@ -10,19 +10,6 @@ type ChartType
     | Line
 
 
-type alias Model =
-    { chartType : ChartType
-    , items : List Item
-    , width : Int
-    , height : Int
-    , title : String
-    , colours :
-        List String
-        -- class [(style, value)]
-    , styles : Dict String (List Style)
-    }
-
-
 type alias Item =
     { value : Float
     , normValue : Float
@@ -32,6 +19,17 @@ type alias Item =
 
 type alias Style =
     ( String, String )
+
+
+type alias Model =
+    { chartType : ChartType
+    , items : List Item
+    , width : Int
+    , height : Int
+    , title : String
+    , colours : List String
+    , styles : Dict String (List Style)
+    }
 
 
 initItem : Float -> String -> Item
@@ -61,7 +59,8 @@ chartInit vs typ =
             , ( "container"
               , [ ( "background-color", "#eee" )
                 , ( "padding", "15px" )
-                  -- , ( "border", "2px solid #aaa" )
+
+                -- , ( "border", "2px solid #aaa" )
                 , ( "display", "flex" )
                 , ( "flex-direction", "column" )
                 ]

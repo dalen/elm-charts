@@ -15,14 +15,21 @@ module Chart
 
 {-| This module comprises tools to create and modify a model of the data, labels and styling, and then the function `toHtml` renders the model using one of the provided views.
 
+
 # Chart constructors
+
 @docs hBar, vBar, pie, lChart
 
+
 # Customisers
+
 @docs title, colours, colors, addValueToLabel, updateStyles, dimensions
 
+
 # Rendering
+
 @docs toHtml
+
 -}
 
 import Html exposing (Html, h3, div, span, text)
@@ -31,7 +38,7 @@ import List exposing (map, map2, length, filter, maximum, foldl, indexedMap)
 import Dict exposing (Dict, update, get)
 import Svg exposing (Svg, svg, circle)
 import Svg.Attributes exposing (viewBox, r, cx, cy, width, height, stroke, strokeDashoffset, strokeDasharray, preserveAspectRatio)
-import ChartModel exposing (..)
+import Model exposing (..)
 import LineChart exposing (..)
 
 
@@ -43,6 +50,7 @@ import LineChart exposing (..)
     hBar data
     |> title "My Chart"
     |> toHtml
+
 -}
 hBar : List ( Float, String ) -> Model
 hBar data =
@@ -70,6 +78,7 @@ hBar data =
     vBar data
     |> title "My Chart"
     |> toHtml
+
 -}
 vBar : List ( Float, String ) -> Model
 vBar data =
@@ -107,6 +116,7 @@ vBar data =
 
     pie data
     |> toHtml
+
 -}
 pie : List ( Float, String ) -> Model
 pie data =
@@ -146,6 +156,7 @@ pie data =
 
     lChart vals labels
         |> toHtml
+
 -}
 lChart : List ( Float, String ) -> Model
 lChart data =
@@ -164,6 +175,7 @@ lChart data =
     chartInit vs ls BarHorizontal
         |> title "This will be the title"
         |> toHtml
+
 -}
 title : String -> Model -> Model
 title newTitle model =
@@ -179,6 +191,7 @@ title newTitle model =
     pie data
     |> colours ["steelblue", "#96A65B", "#D9A679", "#593F27", "#A63D33"]
     |> toHtml
+
 -}
 colours : List String -> Model -> Model
 colours newColours model =
@@ -207,6 +220,7 @@ colors =
     vBar data
     |> addValueToLabel
     |> toHtml
+
 -}
 addValueToLabel : Model -> Model
 addValueToLabel model =
@@ -228,6 +242,7 @@ addValueToLabel model =
     vChart vs ls
         |> updateStyles "chart" [ ( "color", "black" ) ]
         |> toHtml
+
 -}
 updateStyles : String -> List Style -> Model -> Model
 updateStyles selector lst model =
@@ -243,6 +258,7 @@ updateStyles selector lst model =
     vChart vs ls
         |> dimensions 400 300
         |> toHtml
+
 -}
 dimensions : Int -> Int -> Model -> Model
 dimensions width height model =
@@ -294,6 +310,7 @@ changeStyles ( attr, val ) styles =
 
     hBar data
     |> toHtml
+
 -}
 toHtml : Model -> Html a
 toHtml model =
@@ -408,7 +425,8 @@ viewPie model =
             circle
                 [ r "16"
                 , cx "16"
-                  -- translation x-axis
+
+                -- translation x-axis
                 , cy "16"
                 , stroke col
                 , strokeDashoffset (toString off)
