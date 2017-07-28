@@ -179,7 +179,7 @@ lChart data =
 -}
 title : String -> Model -> Model
 title newTitle model =
-    { model | title = newTitle }
+    { model | title = Just newTitle }
 
 
 {-| colours replaces the default colours. Bar charts use just one colour, which will be the head of the list provided.
@@ -317,10 +317,9 @@ toHtml model =
     let
         get_ sel =
             Maybe.withDefault [] (get sel model.styles)
-    in
-        div [ style <| get_ "container" ]
-            [ h3 [ style <| get_ "title" ] [ text model.title ]
-            , div [ style <| get_ "chart-container" ] <|
+
+        chartDiv =
+            div [ style <| get_ "chart-container" ] <|
                 -- chart-elements, axis, legend-labels,...
                 case model.chartType of
                     BarHorizontal ->
@@ -334,7 +333,15 @@ toHtml model =
 
                     Line ->
                         viewLine model
-            ]
+    in
+        div [ style <| get_ "container" ]
+            (case model.title of
+                Just title ->
+                    [ h3 [ style <| get_ "title" ] [ text title ], chartDiv ]
+
+                Nothing ->
+                    [ chartDiv ]
+            )
 
 
 viewBarHorizontal : Model -> List (Html a)

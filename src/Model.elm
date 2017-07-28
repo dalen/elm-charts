@@ -26,7 +26,7 @@ type alias Model =
     , items : List Item
     , width : Int
     , height : Int
-    , title : String
+    , title : Maybe String
     , colours : List String
     , styles : Dict String (List Style)
     }
@@ -51,7 +51,7 @@ chartInit vs typ =
     , items = initItems vs
     , width = 400
     , height = 300
-    , title = ""
+    , title = Nothing
     , colours = [ "#BF69B1", "#96A65B", "#D9A679", "#593F27", "#A63D33" ]
     , styles =
         Dict.fromList
