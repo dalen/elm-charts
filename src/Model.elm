@@ -29,6 +29,7 @@ type alias Model =
     , title : Maybe String
     , colours : List String
     , styles : Dict String (List Style)
+    , numberFormatFunction : Float -> String
     }
 
 
@@ -86,4 +87,5 @@ chartInit vs typ =
                 ]
               )
             ]
+    , numberFormatFunction = toString
     }

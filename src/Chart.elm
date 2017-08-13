@@ -11,6 +11,7 @@ module Chart
         , updateStyles
         , dimensions
         , toHtml
+        , numberFormatFunction
         )
 
 {-| This module comprises tools to create and modify a model of the data, labels and styling, and then the function `toHtml` renders the model using one of the provided views.
@@ -23,7 +24,7 @@ module Chart
 
 # Customisers
 
-@docs title, colours, colors, addValueToLabel, updateStyles, dimensions
+@docs title, colours, colors, addValueToLabel, updateStyles, dimensions, numberFormatFunction
 
 
 # Rendering
@@ -263,6 +264,17 @@ updateStyles selector lst model =
 dimensions : Int -> Int -> Model -> Model
 dimensions width height model =
     { model | width = width, height = height }
+
+
+{-| Set a custom function for formatting numbers in the legend.
+Defaults to `toString`
+
+    The function should have the signature Float -> String
+
+-}
+numberFormatFunction : (Float -> String) -> Model -> Model
+numberFormatFunction function model =
+    { model | numberFormatFunction = function }
 
 
 
