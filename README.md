@@ -1,3 +1,6 @@
+This is a fork of https://github.com/simonh1000/elm-charts that adds a few features. Will send some patches upstream to get them included there instead in the future.
+
+
 # Elm Chart library
 
 An Elm library for creating simple horizontal and vertical bar charts, and for pie charts.
