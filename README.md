@@ -20,6 +20,6 @@ load http://localhost:8000
 
 ## Changelog
 
-3.3.0 - Add ability to use a custom number format function
-3.2.0 - Make chart title optional instead of defaulting it as empty
+fork 1.0.0 - Add ability to use a custom number format function
+           - Make chart title optional instead of defaulting it as empty
 3.1.0 - Add dimensions to model and use these for the line chart
